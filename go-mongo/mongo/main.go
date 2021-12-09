@@ -29,14 +29,14 @@ func main() {
 	podcastsCollection := quickstartDatabase.Collection("podcasts")
 	episodesCollection := quickstartDatabase.Collection("episodes")
 
-	//inserts a data into podcasts collection here bson.D is document and bson.A is array
+	// inserts a data into podcasts collection here bson.D is document and bson.A is array
 	// podcastResult, err := podcastsCollection.InsertOne(ctx, bson.D{
 	// 	{"title", "The Polyglot Developer Podcast"},
 	// 	{"author", "Nic Raboy"},
 	// 	{"tags", bson.A{"development", "programming", "coding"}},
 	// })
 
-	// //insert a data into eposodes collection
+	// // //insert a data into eposodes collection
 	// episodeResult, err := episodesCollection.InsertMany(ctx, []interface{}{
 	// 	bson.D{
 	// 		{"podcast", podcastResult.InsertedID},
@@ -73,6 +73,19 @@ func main() {
 		log.Fatal(err)
 	}
 	fmt.Println("episodes", episodes)
+
+	// delete documets
+	result, err := podcastsCollection.DeleteOne(ctx, bson.M{"title": "The Polyglot Developer Podcast"})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("DeleteOne removed %v document(s)\n", result.DeletedCount)
+
+	result, err = episodesCollection.DeleteMany(ctx, bson.M{"duration": 25})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("DeleteMany removed %v document(s)\n", result.DeletedCount)
 
 	//list the number of database available in mongodb cluster
 	databases, err := client.ListDatabaseNames(ctx, bson.M{})

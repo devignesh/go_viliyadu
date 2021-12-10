@@ -104,7 +104,23 @@ func UpdatePerson(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(person)
 
 }
-func DeletePerson(w http.ResponseWriter, r *http.Request) {}
+func DeletePerson(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("delete")
+	w.Header().Set("content-type", "application/json")
+	var params = mux.Vars(r)
+	id, _ := primitive.ObjectIDFromHex(params["id"])
+	filter := bson.M{"_id": id}
+	collection := client.Database("mongo-rest").Collection("person")
+	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
+
+	deleteperson, err := collection.DeleteOne(ctx, filter)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+	json.NewEncoder(w).Encode(deleteperson)
+
+}
 
 func main() {
 	fmt.Println("main function")

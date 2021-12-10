@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -42,9 +43,67 @@ func CreatePerson(w http.ResponseWriter, r *http.Request) {
 }
 func GetAllperson(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("check")
+	w.Header().Set("content-type", "application/json")
+	var person []Person
+	collection := client.Database("mongo-rest").Collection("person")
+	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
+	result, err := collection.Find(ctx, bson.M{})
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer result.Close(ctx)
+
+	for result.Next(ctx) {
+		var person1 Person
+		result.Decode(&person1)
+		person = append(person, person1)
+	}
+
+	json.NewEncoder(w).Encode(person)
+
 }
-func GetPerson(w http.ResponseWriter, r *http.Request)    {}
-func UpdatePerson(w http.ResponseWriter, r *http.Request) {}
+
+func GetPerson(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("content-type", "application/json")
+	params := mux.Vars(r)
+	id, _ := primitive.ObjectIDFromHex(params["id"])
+	var person Person
+	collection := client.Database("mongo-rest").Collection("person")
+	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
+	err := collection.FindOne(ctx, Person{ID: id}).Decode(&person)
+	if err != nil {
+		log.Fatal(err)
+	}
+	json.NewEncoder(w).Encode(person)
+}
+func UpdatePerson(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("content-type", "application/json")
+	params := mux.Vars(r)
+	id, _ := primitive.ObjectIDFromHex(params["id"])
+	var person Person
+
+	_ = json.NewDecoder(r.Body).Decode(&person)
+
+	collection := client.Database("mongo-rest").Collection("person")
+	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
+
+	update := bson.D{
+		{
+			"$set", bson.D{
+				{"firstname", person.Firstname},
+				{"lastname", person.Lastname},
+			},
+		},
+	}
+	err := collection.FindOneAndUpdate(ctx, Person{ID: id}, update).Decode(&person)
+	if err != nil {
+		log.Fatal(err)
+	}
+	person.ID = id
+	json.NewEncoder(w).Encode(person)
+
+}
 func DeletePerson(w http.ResponseWriter, r *http.Request) {}
 
 func main() {
@@ -58,7 +117,7 @@ func main() {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/person", CreatePerson).Methods("POST")
-	router.HandleFunc("/person", GetAllperson).Methods("GET")
+	router.HandleFunc("/persons", GetAllperson).Methods("GET")
 	router.HandleFunc("/person/{id}", GetPerson).Methods("GET")
 	router.HandleFunc("/person/{id}", UpdatePerson).Methods("PUT")
 	router.HandleFunc("/person/{id}", DeletePerson).Methods("DELETE")

@@ -24,6 +24,7 @@ type Person struct {
 }
 
 func CreatePerson(w http.ResponseWriter, r *http.Request) {
+
 	w.Header().Set("content-type", "application/json")
 	var person Person
 	err := json.NewDecoder(r.Body).Decode(&person)
@@ -41,6 +42,7 @@ func CreatePerson(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(result)
 
 }
+
 func GetAllperson(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("check")
 	w.Header().Set("content-type", "application/json")

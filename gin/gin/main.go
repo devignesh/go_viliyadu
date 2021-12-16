@@ -9,6 +9,9 @@ import (
 
 func main() {
 
+	fmt.Println("main func")
+
+
 	config.Connection()
 
 	routers := gin.Default()

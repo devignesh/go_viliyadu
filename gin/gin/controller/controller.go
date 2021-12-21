@@ -140,3 +140,31 @@ func GetTodo(c *gin.Context) {
 	})
 	return
 }
+
+func UpdateTodo(c *gin.Context) {
+
+	id := c.Param("id")
+	var todo Todo
+	c.BindJSON(&todo)
+	completed := todo.Completed
+	newData := bson.M{
+		"$set": bson.M{
+			"completed":  completed,
+			"updated_at": time.Now(),
+		},
+	}
+	_, err := collection.UpdateOne(context.TODO(), bson.M{"id": id}, newData)
+	if err != nil {
+		log.Printf("Error, Reason: %v\n", err)
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"status":  500,
+			"message": "Something went wrong",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"status":  200,
+		"message": "Todo Edited Successfully",
+	})
+	return
+}

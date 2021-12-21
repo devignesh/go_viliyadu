@@ -168,3 +168,22 @@ func UpdateTodo(c *gin.Context) {
 	})
 	return
 }
+
+func DeleteTodo(c *gin.Context) {
+	id := c.Param("id")
+	_, err := collection.DeleteOne(context.TODO(), bson.M{"id": id})
+	if err != nil {
+		log.Printf("Error while deleting a single todo, Reason: %v\n", err)
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"status":  http.StatusInternalServerError,
+			"message": "Something went wrong",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"status":  http.StatusOK,
+		"message": "Todo deleted successfully",
+	})
+	return
+}

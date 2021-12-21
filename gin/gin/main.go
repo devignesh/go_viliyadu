@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"gin/config"
 	"gin/router"
 
@@ -10,7 +11,6 @@ import (
 func main() {
 
 	fmt.Println("main func")
-
 
 	config.Connection()
 

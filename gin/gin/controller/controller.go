@@ -117,3 +117,26 @@ func GetAllTodo(c *gin.Context) {
 	})
 	return
 }
+
+func GetTodo(c *gin.Context) {
+	id := c.Param("id")
+
+	todo := Todo{}
+
+	err := collection.FindOne(context.TODO(), bson.M{"id": id}).Decode(&todo)
+	if err != nil {
+		log.Printf("Error while getting a single todo, Reason: %v\n", err)
+		c.JSON(http.StatusNotFound, gin.H{
+			"status":  http.StatusNotFound,
+			"message": "Todo not found",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"status":  http.StatusOK,
+		"message": "Single Todo",
+		"data":    todo,
+	})
+	return
+}

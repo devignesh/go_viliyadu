@@ -9,5 +9,8 @@ import (
 func Routes(router *gin.Engine) {
 	router.POST("/todo", controller.CreateTodopost)
 	router.GET("/todos", controller.GetAllTodo)
-	router.GET("/todo", controller.GetTodo)
+	router.GET("/todo/:id", controller.GetTodo)
+	router.PUT("/todo/:id", controller.UpdateTodo)
+	router.DELETE("/todo/:id", controller.DeleteTodo)
+
 }

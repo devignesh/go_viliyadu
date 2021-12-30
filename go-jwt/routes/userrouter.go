@@ -1,6 +1,8 @@
 package routes
 
 import (
+	"go_viliyadu/go-jwt/controllers"
+
 	"github.com/gin-gonic/gin"
 	"github.com/go-chi/chi/middleware"
 )

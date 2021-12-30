@@ -50,6 +50,9 @@ func Signup(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while checking for the email"})
 	}
 
+	password := HashPassword(*&user.Password)
+	user.Password = &password
+
 	count, err = userCollection.CountDocuments(ctx, bson.M{"phone": user.Phone})
 	defer cancel()
 	if err != nil {

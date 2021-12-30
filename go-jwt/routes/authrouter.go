@@ -1,6 +1,10 @@
 package routes
 
-import "github.com/gin-gonic/gin"
+import (
+	"go_viliyadu/go-jwt/controllers"
+
+	"github.com/gin-gonic/gin"
+)
 
 func AuthRoutes(incomingRoutes *gin.Engine) {
 	incomingRoutes.POST("users/signup", controllers.Signup())

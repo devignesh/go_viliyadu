@@ -9,4 +9,5 @@ require (
 	github.com/go-playground/validator/v10 v10.4.1
 	github.com/joho/godotenv v1.4.0
 	go.mongodb.org/mongo-driver v1.8.1
+	golang.org/x/crypto v0.0.0-20201216223049-8b5274cf687f
 )

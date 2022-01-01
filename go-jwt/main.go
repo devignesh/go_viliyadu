@@ -2,15 +2,22 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"go_viliyadu/go-jwt/routes"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
 	fmt.Println("main func")
+
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal("error loading .env file")
+	}
 
 	port := os.Getenv("PORT")
 

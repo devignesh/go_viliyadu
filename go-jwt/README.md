@@ -17,3 +17,24 @@
 
     4. Run
         ./ {{name}}
+
+# Postman Collection
+
+    1. Signup Curl:
+
+        curl --location --request POST 'localhost:8888/users/signup' \
+            --header 'Content-Type: application/json' \
+            --data-raw '{
+                "First_name":"vicky",
+                "Last_name":"smazz",
+                "Password":"qwerty@123",
+                "Email":"vigneshkumar.mca216@adhiyamaan.in",
+                "Phone":"9047660920",
+                "User_type":"ADMIN"
+            }'
+
+        Response:
+
+            {
+                "InsertedID": "61d9a21b3ada8a68884245ff"
+            }

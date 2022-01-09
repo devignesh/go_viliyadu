@@ -148,3 +148,29 @@
                     }
                 ]
             }
+
+
+    4. Get User: Based on ID
+
+        curl --location --request GET 'localhost:8888/users/61d9a21b3ada8a68884245ff' \
+            --header 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6InZpZ25lc2hrdW1hci5tY2EyMTZAYWRoaXlhbWFhbi5pbiIsIkZpcnN0X25hbWUiOiJ2aWNreSIsIkxhc3RfbmFtZSI6InNtYXp6IiwiVWlkIjoiNjFkOWEyMWIzYWRhOGE2ODg4NDI0NWZmIiwiVXNlcl90eXBlIjoiQURNSU4iLCJleHAiOjE2NDE4MzcwMDF9.zgXhJqwqHoNcG2-SM2oE8VZFhD6aelDMWoNoRXoimW8'
+
+        Response:
+
+            {
+                "Message": "requst accepted",
+                "data": {
+                    "ID": "61d9a21b3ada8a68884245ff",
+                    "first_name": "vicky",
+                    "last_name": "smazz",
+                    "Password": "$2a$14$lPKbBFLpkNj8Rvtprwd/5.CWQCoNPye3ooDR/u5g0AHZH/jjLnorO",
+                    "email": "vigneshkumar.mca216@adhiyamaan.in",
+                    "phone": "9047660920",
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6InZpZ25lc2hrdW1hci5tY2EyMTZAYWRoaXlhbWFhbi5pbiIsIkZpcnN0X25hbWUiOiJ2aWNreSIsIkxhc3RfbmFtZSI6InNtYXp6IiwiVWlkIjoiNjFkOWEyMWIzYWRhOGE2ODg4NDI0NWZmIiwiVXNlcl90eXBlIjoiQURNSU4iLCJleHAiOjE2NDE4MzcwMDF9.zgXhJqwqHoNcG2-SM2oE8VZFhD6aelDMWoNoRXoimW8",
+                    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6IiIsIkZpcnN0X25hbWUiOiIiLCJMYXN0X25hbWUiOiIiLCJVaWQiOiIiLCJVc2VyX3R5cGUiOiIiLCJleHAiOjE2NDIzNTU0MDF9.8LQbikzo1MDOvsDKFoWib4Ru88jtxJoz6nKbkVB4uqc",
+                    "user_type": "ADMIN",
+                    "created_at": "2022-01-08T14:39:23Z",
+                    "updated_at": "2022-01-09T17:50:01Z",
+                    "user_id": "61d9a21b3ada8a68884245ff"
+                }
+            }

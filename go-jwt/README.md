@@ -148,7 +148,7 @@
             ]
         }
 
-# Get User: Based on ID | localhost:8888/users/61d9a21b3ada8a68884245ff
+# Get User: Based on ID | localhost:8888/users/61d9a21b3ada8a68884245ff .
 
         curl --location --request GET 'localhost:8888/users/61d9a21b3ada8a68884245ff' \
          --header 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbWFpbCI6InZpZ25lc2hrdW1hci5tY2EyMTZAYWRoaXlhbWFhbi5pbiIsIkZpcnN0X25hbWUiOiJ2aWNreSIsIkxhc3RfbmFtZSI6InNtYXp6IiwiVWlkIjoiNjFkOWEyMWIzYWRhOGE2ODg4NDI0NWZmIiwiVXNlcl90eXBlIjoiQURNSU4iLCJleHAiOjE2NDE4MzcwMDF9.zgXhJqwqHoNcG2-SM2oE8VZFhD6aelDMWoNoRXoimW8'

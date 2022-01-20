@@ -2,4 +2,4 @@
 
 playing with Go
 
-Gin with mongo stuffs and my golang practises.
+Gin with mongo stuffs and my golang practises.Writing go codes and apis.

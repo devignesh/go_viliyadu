@@ -24,6 +24,7 @@ type Food struct {
 
 var validate = validator.New()
 
+//collection creation
 var foodCollection *mongo.Collection = database.OpenCollection(database.Client, "food")
 
 func FoodCreate(c *gin.Context) {

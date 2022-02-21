@@ -10,6 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
+// Monngo conn
 func DbConfig() *mongo.Client {
 
 	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
@@ -37,7 +38,8 @@ func DbConfig() *mongo.Client {
 var Client *mongo.Client = DbConfig()
 
 func OpenCollection(client *mongo.Client, collectionName string) *mongo.Collection {
-
+	
+	//collection creation
 	var collection *mongo.Collection = client.Database("gin-mongo").Collection(collectionName)
 
 	return collection

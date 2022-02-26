@@ -20,6 +20,7 @@ type Podcast struct {
 	Tags   []string           `bson:"tags,omitempty"`
 }
 
+//episode struct
 type Episode struct {
 	ID          primitive.ObjectID `bson:"_id,omitempty"`
 	Podcast     primitive.ObjectID `bson:"podcast,omitempty"`

@@ -12,6 +12,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+//podcast model
 type Podcast struct {
 	ID     primitive.ObjectID `bson:"_id,omitempty"`
 	Title  string             `bson:"title,omitempty"`

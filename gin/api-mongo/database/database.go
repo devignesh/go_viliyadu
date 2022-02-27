@@ -37,6 +37,7 @@ func DbConfig() *mongo.Client {
 
 var Client *mongo.Client = DbConfig()
 
+//collection
 func OpenCollection(client *mongo.Client, collectionName string) *mongo.Collection {
 	
 	//collection creation

@@ -21,10 +21,12 @@ var albums = []album{
 	{ID: "3", Title: "aws", Artist: "diva", Price: 2222},
 }
 
+//get func
 func getAlbums(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, albums)
 }
 
+//post func
 func postAlbums(c *gin.Context) {
 	var newAlbum album
 

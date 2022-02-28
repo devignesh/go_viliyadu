@@ -51,6 +51,7 @@ func getAlbumByID(c *gin.Context) {
 	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "album not found"})
 }
 
+//main func
 func main() {
 	router := gin.Default()
 	router.GET("/albums", getAlbums)

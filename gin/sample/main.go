@@ -14,6 +14,7 @@ type album struct {
 	Price  float64 `json:"price"`
 }
 
+//dummy data
 var albums = []album{
 	{ID: "1", Title: "golag", Artist: "vicky", Price: 1000},
 	{ID: "2", Title: "python", Artist: "mani", Price: 1500.55},

@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//album struct
 type album struct {
 	ID     string  `json:"id"`
 	Title  string  `json:"title"`

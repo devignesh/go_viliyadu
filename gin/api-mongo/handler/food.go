@@ -28,6 +28,7 @@ var validate = validator.New()
 //collection creation
 var foodCollection *mongo.Collection = database.OpenCollection(database.Client, "food")
 
+//food create func
 func FoodCreate(c *gin.Context) {
 
 	var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)

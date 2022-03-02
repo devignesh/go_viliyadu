@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//main func
 func main() {
 	fmt.Println("main")
 

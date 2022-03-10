@@ -69,6 +69,7 @@ func GetAllperson(w http.ResponseWriter, r *http.Request) {
 
 }
 
+//get single data api
 func GetPerson(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("content-type", "application/json")

@@ -15,6 +15,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+//mongo client setting
 var client *mongo.Client
 
 type Person struct {

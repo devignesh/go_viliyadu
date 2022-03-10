@@ -84,6 +84,8 @@ func GetPerson(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(person)
 }
+
+//update existing data api
 func UpdatePerson(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 	params := mux.Vars(r)

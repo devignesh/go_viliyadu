@@ -18,6 +18,7 @@ import (
 //mongo client setting
 var client *mongo.Client
 
+//person data structs
 type Person struct {
 	ID        primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
 	Firstname string             `json:"firstname,omitempty" bson:"firstname,omitempty"`

@@ -25,6 +25,7 @@ type Person struct {
 	Lastname  string             `json:"lastname,omitempty" bson:"lastname,omitempty"`
 }
 
+//create a new person api
 func CreatePerson(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("content-type", "application/json")

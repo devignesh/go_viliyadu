@@ -113,6 +113,8 @@ func UpdatePerson(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(person)
 
 }
+
+//delete api
 func DeletePerson(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("delete")
 	w.Header().Set("content-type", "application/json")

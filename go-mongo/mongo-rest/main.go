@@ -133,6 +133,7 @@ func DeletePerson(w http.ResponseWriter, r *http.Request) {
 
 }
 
+//main func
 func main() {
 	fmt.Println("main function")
 

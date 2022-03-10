@@ -46,6 +46,7 @@ func CreatePerson(w http.ResponseWriter, r *http.Request) {
 
 }
 
+//get all the person in collection api
 func GetAllperson(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("check")
 	w.Header().Set("content-type", "application/json")

@@ -39,6 +39,7 @@ func FoodCreate(c *gin.Context) {
 		return
 	}
 
+	//validator
 	validationErr := validate.Struct(food)
 	if validationErr != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": validationErr.Error()})

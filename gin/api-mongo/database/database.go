@@ -35,6 +35,7 @@ func DbConfig() *mongo.Client {
 
 }
 
+//client db conn
 var Client *mongo.Client = DbConfig()
 
 //collection

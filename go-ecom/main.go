@@ -5,4 +5,6 @@ import (
 
 )
 
-func main() {}
+func main() {
+	fmt.Println("main func")
+}

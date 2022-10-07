@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"gin/config"
 	"gin/router"
-
 	"github.com/gin-gonic/gin"
 )
 

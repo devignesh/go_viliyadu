@@ -55,6 +55,7 @@ func TodoCollection(c *mongo.Database) {
 }
 
 func CreateTodopost(c *gin.Context) {
+	
 	var ctx, _ = context.WithTimeout(context.Background(), 100*time.Second)
 	var todo Todo
 	c.BindJSON(&todo)
@@ -91,6 +92,7 @@ func CreateTodopost(c *gin.Context) {
 }
 
 func GetAllTodo(c *gin.Context) {
+	
 	todos := []Todo{}
 	cursor, err := collection.Find(context.TODO(), bson.M{})
 
@@ -119,10 +121,10 @@ func GetAllTodo(c *gin.Context) {
 }
 
 func GetTodo(c *gin.Context) {
+	
 	id := c.Param("id")
-
 	todo := Todo{}
-
+	
 	err := collection.FindOne(context.TODO(), bson.M{"id": id}).Decode(&todo)
 	if err != nil {
 		log.Printf("Error while getting a single todo, Reason: %v\n", err)
@@ -170,6 +172,7 @@ func UpdateTodo(c *gin.Context) {
 }
 
 func DeleteTodo(c *gin.Context) {
+	
 	id := c.Param("id")
 	_, err := collection.DeleteOne(context.TODO(), bson.M{"id": id})
 	if err != nil {

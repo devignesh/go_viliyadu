@@ -13,6 +13,7 @@ import (
 )
 
 func DBinstance() *mongo.Client {
+	
 	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal("error loading .env file")
@@ -35,7 +36,6 @@ func DBinstance() *mongo.Client {
 	fmt.Println("connected to mongodb database sucessfully")
 
 	return client
-
 }
 
 var Client *mongo.Client = DBinstance()

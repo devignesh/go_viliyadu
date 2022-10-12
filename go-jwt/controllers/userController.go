@@ -24,6 +24,7 @@ var userCollection *mongo.Collection = database.OpenCollection(database.Client, 
 var validate = validator.New()
 
 func HashPassword(password string) string {
+	
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
 	if err != nil {
 		log.Panic(err)
@@ -32,6 +33,7 @@ func HashPassword(password string) string {
 }
 
 func VerifyPassword(userPassword string, providedPassword string) (bool, string) {
+	
 	err := bcrypt.CompareHashAndPassword([]byte(providedPassword), []byte(userPassword))
 	check := true
 	msg := ""
@@ -44,6 +46,7 @@ func VerifyPassword(userPassword string, providedPassword string) (bool, string)
 }
 
 func Signup(c *gin.Context) {
+	
 	var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 	var user models.User
 

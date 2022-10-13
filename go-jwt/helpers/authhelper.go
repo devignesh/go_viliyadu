@@ -8,6 +8,7 @@ import (
 
 //check the user type user | admin
 func CheckUserType(c *gin.Context, role string) (err error) {
+	
 	userType := c.GetString("user_type")
 	err = nil
 	if userType != role {
@@ -18,6 +19,7 @@ func CheckUserType(c *gin.Context, role string) (err error) {
 }
 
 func MatchUserTypeToUid(c *gin.Context, userId string) (err error) {
+	
 	userType := c.GetString("user_type")
 	uid := c.GetString("uid")
 	err = nil

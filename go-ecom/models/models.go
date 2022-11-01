@@ -23,6 +23,33 @@ type User struct {
 	OrderStatus    []Order            `json:"orders" bson:"orders"`
 }
 
-type ProductUser struct{}
-type Address struct{}
-type Order struct{}
+type Product struct {
+	ProductID
+	ProductName
+	Price
+	Ratings
+	Image
+}
+
+type ProductUser struct {
+	ProductID
+	ProductName
+	Price
+	Ratings
+	Image
+}
+type Address struct {
+	AddressID
+	House
+	Street
+	City
+	Pincode
+}
+type Order struct {
+	OrderID
+	OrderCart
+	OrderedAt
+	Price
+	Discount
+	PaymentMethod
+}

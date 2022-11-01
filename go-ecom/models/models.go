@@ -24,11 +24,11 @@ type User struct {
 }
 
 type Product struct {
-	ProductID
-	ProductName
-	Price
-	Ratings
-	Image
+	ProductID   primitive.ObjectID `bson:"_id"`
+	ProductName *string            `json:"product_name"`
+	Price       *uint64            `json:"price"`
+	Ratings     *uint8             `json:"ratings"`
+	Image       *string            `json:"image"`
 }
 
 type ProductUser struct {

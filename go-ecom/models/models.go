@@ -53,3 +53,8 @@ type Order struct {
 	Discount
 	PaymentMethod
 }
+
+type Payment struct {
+	Digital bool `json:"digital" bson:"digital"`
+	COD     bool `json:"cod"     bson:"cod"`
+}

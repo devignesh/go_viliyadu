@@ -1,12 +1,12 @@
 package routes
 
 import (
-	"go-hotel/controllers"
+	"go_viliyadu/go-ecom/controllers"
 
 	"github.com/gin-gonic/gin"
 )
 
-func UserRoutes(routes *gin.Engine) {
+func UserRouters(routes *gin.Engine) {
 
 	routes.POST("/users/signup", controllers.SignUpCon())
 	routes.POST("/users/login", controllers.LoginCon())

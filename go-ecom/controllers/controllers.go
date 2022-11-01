@@ -1,15 +1,19 @@
 package controllers
 
+import "github.com/gin-gonic/gin"
+
 func HashPassword(password string) string {}
 
 func VerifyPassword(userPassword, givenPassword string) (bool, string) {}
 
-func SignUpCon()
+func SignUpCon() gin.HandlerFunc {
 
-func LoginCon()
+}
 
-func ProductViewerAdmin()
+func LoginCon() gin.HandlerFunc {}
 
-func SearchProduct()
+func ProductViewerAdmin() gin.HandlerFunc {}
 
-func SearchProductByQuery()
+func SearchProduct() gin.HandlerFunc {}
+
+func SearchProductByQuery() gin.HandlerFunc {}

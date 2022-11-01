@@ -1,8 +1,8 @@
 package controllers
 
-func HashPassword()
+func HashPassword(password string) string {}
 
-func VerifyPassword()
+func VerifyPassword(userPassword, givenPassword string) (bool, string) {}
 
 func SignUpCon()
 

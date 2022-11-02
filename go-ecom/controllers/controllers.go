@@ -2,13 +2,14 @@ package controllers
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net/http"
 	"time"
 
 	"go_viliyadu/go-ecom/database"
 	dto "go_viliyadu/go-ecom/models"
-	"go_viliyadu/go-ecom/token"
+	tokengen "go_viliyadu/go-ecom/token"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator"
@@ -90,7 +91,7 @@ func SignUpCon() gin.HandlerFunc {
 		user.UpdatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 		user.ID = primitive.NewObjectID()
 		user.UserID = user.ID.Hex()
-		token, refreshtoken, _ := token.TokenGenerator(*user.Email, *user.FistName, *user.LastName, user.UserID)
+		token, refreshtoken, _ := tokengen.TokenGenerator(*user.Email, *user.FistName, *user.LastName, user.UserID)
 		user.Token = &token
 		user.RefreshToken = &refreshtoken
 		user.UserCart = make([]dto.ProductUser, 0)
@@ -109,7 +110,40 @@ func SignUpCon() gin.HandlerFunc {
 
 }
 
-func LoginCon() gin.HandlerFunc {}
+func LoginCon() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+		defer cancel()
+
+		var loginuser dto.User
+		var foundUser dto.User
+		if err := c.BindJSON(&loginuser); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err})
+			return
+		}
+
+		err := UserCollection.FindOne(ctx, bson.M{"email": loginuser.Email}).Decode(&foundUser)
+		defer cancel()
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "login or password incorrect"})
+			return
+		}
+
+		PasswordCheck, msg := VerifyPassword(*loginuser.Password, *foundUser.Password)
+		defer cancel()
+		if !PasswordCheck {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": msg})
+			fmt.Println(msg)
+			return
+		}
+
+		tokens, refreshToken, _ := tokengen.TokenGenerator(*foundUser.Email, *foundUser.FistName, *foundUser.LastName, foundUser.UserID)
+		defer cancel()
+		tokengen.UpdateAllTokens(tokens, refreshToken, foundUser.UserID)
+		c.JSON(http.StatusFound, foundUser)
+
+	}
+}
 
 func ProductViewerAdmin() gin.HandlerFunc {}
 

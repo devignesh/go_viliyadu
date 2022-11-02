@@ -15,14 +15,24 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"golang.org/x/crypto/bcrypt"
 )
 
 var UserCollection *mongo.Collection = database.UserData(database.ClientMongo, "Users")
 var validate = validator.New()
 
-func HashPassword(password string) string {}
+func HashPassword(password string) string {
 
-func VerifyPassword(userPassword, givenPassword string) (bool, string) {}
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	if err != nil {
+		log.Panic(err)
+	}
+	return string(bytes)
+}
+
+func VerifyPassword(userPassword, givenPassword string) (bool, string) {
+
+}
 
 func SignUpCon() gin.HandlerFunc {
 

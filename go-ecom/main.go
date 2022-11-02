@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go_viliyadu/go-ecom/database"
 	"go_viliyadu/go-ecom/middleware"
 	"go_viliyadu/go-ecom/routes"
 	"log"

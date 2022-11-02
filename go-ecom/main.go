@@ -18,7 +18,7 @@ func main() {
 	if port == "" {
 		port = "8080"
 	}
-	app := controllers.NewApplication(database.ProductData(database.Client, "Products"), database.UserData(database.Client, "Users"))
+	app := controllers.NewApplication(database.ProductData(database.ClientMongo, "Products"), database.UserData(database.ClientMongo, "Users"))
 
 	router := gin.New()
 	router.Use(gin.Logger())

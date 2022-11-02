@@ -11,13 +11,14 @@ import (
 	"go_viliyadu/go-ecom/token"
 
 	"github.com/gin-gonic/gin"
-	validate "github.com/go-playground/validator/v10"
+	"github.com/go-playground/validator"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
 var UserCollection *mongo.Collection = database.UserData(database.ClientMongo, "Users")
+var validate = validator.New()
 
 func HashPassword(password string) string {}
 

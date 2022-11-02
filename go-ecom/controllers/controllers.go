@@ -32,6 +32,15 @@ func HashPassword(password string) string {
 
 func VerifyPassword(userPassword, givenPassword string) (bool, string) {
 
+	err := bcrypt.CompareHashAndPassword([]byte(givenPassword), []byte(userPassword))
+	valid := true
+	msg := ""
+	if err != nil {
+		msg = "Login Or Passowrd is Incorerct"
+		valid = false
+	}
+	return valid, msg
+
 }
 
 func SignUpCon() gin.HandlerFunc {

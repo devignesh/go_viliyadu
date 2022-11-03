@@ -68,6 +68,7 @@ func SignUpCon() gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err})
 			return
 		}
+
 		if count > 0 {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "User already exists"})
 		}
@@ -79,6 +80,7 @@ func SignUpCon() gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err})
 			return
 		}
+
 		if count > 0 {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "Phone is already in use"})
 			return
@@ -104,6 +106,7 @@ func SignUpCon() gin.HandlerFunc {
 			return
 		}
 		defer cancel()
+
 		c.JSON(http.StatusCreated, "Successfully Signed Up!!")
 
 	}

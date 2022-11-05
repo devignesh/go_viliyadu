@@ -122,6 +122,7 @@ func LoginCon() gin.HandlerFunc {
 
 		var loginuser dto.User
 		var foundUser dto.User
+
 		if err := c.BindJSON(&loginuser); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err})
 			return
@@ -129,6 +130,7 @@ func LoginCon() gin.HandlerFunc {
 
 		err := UserCollection.FindOne(ctx, bson.M{"email": loginuser.Email}).Decode(&foundUser)
 		defer cancel()
+
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "login or password incorrect"})
 			return
@@ -136,6 +138,7 @@ func LoginCon() gin.HandlerFunc {
 
 		PasswordCheck, msg := VerifyPassword(*loginuser.Password, *foundUser.Password)
 		defer cancel()
+
 		if !PasswordCheck {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": msg})
 			fmt.Println(msg)
@@ -144,6 +147,7 @@ func LoginCon() gin.HandlerFunc {
 
 		tokens, refreshToken, _ := tokengen.TokenGenerator(*foundUser.Email, *foundUser.FistName, *foundUser.LastName, foundUser.UserID)
 		defer cancel()
+
 		tokengen.UpdateAllTokens(tokens, refreshToken, foundUser.UserID)
 		c.JSON(http.StatusFound, foundUser)
 

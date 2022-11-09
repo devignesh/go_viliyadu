@@ -52,6 +52,7 @@ func SignUpCon() gin.HandlerFunc {
 		defer cancel()
 
 		var user dto.User
+
 		if err := c.BindJSON(&user); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
@@ -76,6 +77,7 @@ func SignUpCon() gin.HandlerFunc {
 
 		count, err = UserCollection.CountDocuments(ctx, bson.M{"phone": user.Phone})
 		defer cancel()
+
 		if err != nil {
 			log.Panic(err)
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err})
@@ -94,7 +96,9 @@ func SignUpCon() gin.HandlerFunc {
 		user.UpdatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 		user.ID = primitive.NewObjectID()
 		user.UserID = user.ID.Hex()
+
 		token, refreshtoken, _ := tokengen.TokenGenerator(*user.Email, *user.FistName, *user.LastName, user.UserID)
+
 		user.Token = &token
 		user.RefreshToken = &refreshtoken
 		user.UserCart = make([]dto.ProductUser, 0)

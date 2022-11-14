@@ -41,7 +41,6 @@ func VerifyPassword(userPassword, givenPassword string) (bool, string) {
 		valid = false
 	}
 	return valid, msg
-
 }
 
 func SignUpCon() gin.HandlerFunc {

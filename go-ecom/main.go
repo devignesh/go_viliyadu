@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go_viliyadu/go-ecom/controllers"
 	"go_viliyadu/go-ecom/database"
 	"go_viliyadu/go-ecom/middleware"
 	"go_viliyadu/go-ecom/routes"
@@ -12,6 +13,7 @@ import (
 )
 
 func main() {
+
 	fmt.Println("main func")
 
 	port := os.Getenv("PORT")

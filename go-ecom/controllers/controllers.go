@@ -11,7 +11,7 @@ import (
 	dto "go_viliyadu/go-ecom/models"
 	tokengen "go_viliyadu/go-ecom/token"
 
-	// "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -20,6 +20,7 @@ import (
 )
 
 var UserCollection *mongo.Collection = database.UserData(database.ClientMongo, "Users")
+var ProductCollection *mongo.Collection = database.ProductData(database.ClientMongo, "Products")
 var validate = validator.New()
 
 func HashPassword(password string) string {
@@ -160,7 +161,7 @@ func LoginCon() gin.HandlerFunc {
 
 func ProductViewerAdmin() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		var ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
 
 		var products dto.Product
@@ -170,6 +171,14 @@ func ProductViewerAdmin() gin.HandlerFunc {
 		}
 
 		products.ProductID = primitive.NewObjectID()
+		_, ins := ProductCollection.InsertOne(ctx, products)
+		if ins != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Not created"})
+			return
+		}
+		defer cancel()
+		c.JSON(http.StatusOK, "Successfully added our Product Admin!!")
+
 	}
 }
 

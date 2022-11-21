@@ -183,6 +183,8 @@ func ProductViewerAdmin() gin.HandlerFunc {
 	}
 }
 
-func SearchProduct() gin.HandlerFunc {}
+func SearchProduct() gin.HandlerFunc {
+	return func(c *gin.Context) {}
+}
 
 func SearchProductByQuery() gin.HandlerFunc {}

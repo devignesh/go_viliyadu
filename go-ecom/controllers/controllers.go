@@ -161,7 +161,7 @@ func LoginCon() gin.HandlerFunc {
 
 func ProductViewerAdmin() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		
+
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		defer cancel()
 
@@ -187,4 +187,6 @@ func SearchProduct() gin.HandlerFunc {
 	return func(c *gin.Context) {}
 }
 
-func SearchProductByQuery() gin.HandlerFunc {}
+func SearchProductByQuery() gin.HandlerFunc {
+	return func(c *gin.Context) {}
+}

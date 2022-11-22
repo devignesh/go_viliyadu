@@ -45,7 +45,6 @@ func VerifyPassword(userPassword, givenPassword string) (bool, string) {
 }
 
 func SignUpCon() gin.HandlerFunc {
-
 	return func(c *gin.Context) {
 
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)

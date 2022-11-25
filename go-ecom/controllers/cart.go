@@ -1,6 +1,10 @@
 package controllers
 
-func AddToCart() {}
+import "github.com/gin-gonic/gin"
+
+func AddToCart() gin.HandlerFunc {
+	return func(c *gin.Context) {}
+}
 
 func RemoveItem() {}
 

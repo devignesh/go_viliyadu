@@ -10,7 +10,9 @@ func RemoveItem() gin.HandlerFunc {
 	return func(c *gin.Context) {}
 }
 
-func GetItemFromCart() {}
+func GetItemFromCart() gin.HandlerFunc {
+	return func(c *gin.Context) {}
+}
 
 func BuyFromCart() {}
 

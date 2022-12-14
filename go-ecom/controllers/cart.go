@@ -18,4 +18,6 @@ func BuyFromCart() gin.HandlerFunc {
 	return func(c *gin.Context) {}
 }
 
-func InstantBuy() {}
+func InstantBuy() gin.HandlerFunc {
+	return func(c *gin.Context) {}
+}

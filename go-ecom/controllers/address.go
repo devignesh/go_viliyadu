@@ -1,6 +1,9 @@
 package controllers
 
-func AddAddress() {}
+func AddAddress() gin.HandlerFunc {
+	return func(c *gin.Context) {}
+}
+
 
 func EditHomeAddress() {}
 

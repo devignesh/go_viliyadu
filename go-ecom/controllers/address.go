@@ -13,4 +13,6 @@ func EditWorkAddress() gin.HandlerFunc {
 	return func(c *gin.Context) {}
 }
 
-func DeleteAddress() {}
+func DeleteAddress() gin.HandlerFunc {
+	return func(c *gin.Context) {}
+}

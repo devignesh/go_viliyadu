@@ -1,7 +1,7 @@
 package controllers
 
 func AddAddress() gin.HandlerFunc {
-	return func(c *gin.Context) {}
+// 	return func(c *gin.Context) {}
 }
 
 

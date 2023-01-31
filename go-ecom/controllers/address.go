@@ -6,7 +6,7 @@ func AddAddress() gin.HandlerFunc {
 
 
 func EditHomeAddress() gin.HandlerFunc {
-	return func(c *gin.Context) {}
+// 	return func(c *gin.Context) {}
 }
 
 func EditWorkAddress() gin.HandlerFunc {
